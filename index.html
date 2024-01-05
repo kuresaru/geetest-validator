@@ -57,11 +57,26 @@
     </div>
     <br>
 
-
     <script src="js/jquery.js"></script>
     <script src="js/gt.js"></script>
 
     <script>
+		$(document).ready(function() {
+			$('input[type=text]').val('');
+			var hashString = window.location.hash.substring(1);
+			console.log(hashString);
+			var hashData = new URLSearchParams(hashString);
+			console.log(hashData);
+
+			if (hashData.has('gt')) {
+				$('#gt').val(hashData.get('gt'));
+			}
+
+			if (hashData.has('challenge')) {
+				$('#challenge').val(hashData.get('challenge'));
+			}
+		});
+
         var handler = function (captchaObj) {
             captchaObj.appendTo('#captcha');
             captchaObj.onReady(function () {
